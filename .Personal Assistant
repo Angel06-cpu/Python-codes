@@ -1,0 +1,42 @@
+def get_user_info():
+    name = input("What's your name? ")
+    age = input("How old are you? ")
+    color = input("What's your favorite color? ")
+    food = input("What's your favorite food? ")
+    city = input("Which city do you live in? ")
+    shs = input("Which SHS did you attend? ")
+    team = input("What's your favorite soccer team? ")
+
+    summary = (
+        f"\nHello, {name}!\n"
+        f"You are {age} years old, love the color {color}, and enjoy eating {food}.\n"
+        f"You live in {city}, went to {shs}, and support {team}.\n"
+        f"Life must be exciting in {city}!\n"
+    )
+
+    print(summary)
+    return name, summary
+
+def save_summary(name, summary, rating):
+    filename = f"{name}.txt"
+    with open(filename, "w") as file:
+        file.write(summary)
+        file.write(f"\nUser rating: {rating} stars\n")
+    print(f"Summary saved to {filename}!")
+
+def main():
+    while True:
+        name, summary = get_user_info()
+
+        save = input("Do you want to save this summary? (yes/no): ").lower()
+        if save == 'yes':
+            rating = input("Rate this assistant (1 to 5 stars): ")
+            save_summary(name, summary, rating)
+
+        restart = input("Do you want to restart the process? (yes/no): ").lower()
+        if restart != 'yes':
+            print("Thank you for using the assistant. and have a great day ")
+            break
+
+# Run the program
+main()
